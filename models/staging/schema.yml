@@ -1,0 +1,97 @@
+
+version: 2
+
+sources:
+  - name: sales_car
+    description: this dataset of bigquery contains tables of project
+    tables:
+      - name: company_branches
+        description: this table contains informations about company branches
+        columns:
+          - name: id
+            description: Primary key of the company_branches table
+            tests: 
+              - unique
+              - not_null
+          - name: country_code
+            description: Column contry code of company_branches table
+            tests: 
+              - not_null
+          - name: country
+            description: Description contry of company_branches table
+            tests: 
+              - not_null
+          - name: state
+            description: Description state of company_branches table
+            tests: 
+              - not_null
+          - name: city
+            description: Description city of company_branches table
+            tests: 
+              - not_null
+          - name: name
+            description: Name of company_branches table
+            tests: 
+              - not_null
+          - name: latitude
+            description: Values latitude of company_branches table
+            tests: 
+              - not_null
+          - name: longitude
+            description: Values longitude of company_branches table
+            tests: 
+              - not_null
+          - name: phone
+            description: Value phone number of company_branches table
+            tests: 
+              - not_null              
+      - name: order_items
+        description: this table contains informations about order items
+      - name: order_types
+        description: this table contains informations about order types
+      - name: orders
+        description: this table contains informations about orders
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - id
+                - order_date
+        columns:
+          - name: id
+            description: Primary key of the orders table
+            tests: 
+              - unique
+              - not_null
+          - name: customer_id
+            description: Foreing key of the customers table
+            tests: 
+              - not_null
+          - name: departament_id
+            description: Foreing key of column departament in employees table
+          - name: order_type_id
+            description: Foreing key of the order type table
+            tests: 
+              - not_null
+          - name: order_status
+            description: Description of order status in orders table
+            tests: 
+              - not_null
+              - accepted_values:
+                  values: ['delayed', 'on hold', 'pending', 'shipped']
+          - name: order_date
+            description: Column date of orders table
+            tests: 
+              - not_null
+              - dbt_utils.accepted_range:
+                  max_value: "CURRENT_TIMESTAMP()"
+          - name: return_date
+            description: Column date of orders table
+            tests: 
+              - not_null
+  - name: seeds
+    description: this dataset contains informations about csv
+    tables:
+      - name: customers
+        description: this table contains informations about customers file.csv
+      - name: employees
+        description: this table contains informations about employees file.csv
