@@ -30,6 +30,7 @@ with
                 , employee_id
                 , order_type_id
                 , order_date
+                , return_date
                 , date_diff( 
                     case
                         when return_date is null then last_day(DATE(return_year, return_month, 1), MONTH)

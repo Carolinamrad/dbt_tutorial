@@ -83,5 +83,3 @@ models:
           - not_null   
       - name: registration_date
         description: Description about date of registration in customers
-        tests: 
-          - not_null

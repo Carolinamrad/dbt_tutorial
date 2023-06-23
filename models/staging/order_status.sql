@@ -1,7 +1,8 @@
 with
     source as (
         select  distinct  
-                case
+                id as order_id
+                , case
                     when order_status = 'delayed' then 'ATRASADO'
                     when order_status = 'on hold' then 'EM ESPERA'
                     when order_status = 'pending' then 'PENDENTE'
@@ -11,5 +12,8 @@ with
         from {{ source('sales_car', 'orders') }}
     )
 
-select cast(order_status as string) from source
+select 
+        order_id
+        , order_status
+from source
     
