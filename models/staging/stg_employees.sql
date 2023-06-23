@@ -16,7 +16,7 @@ with
                 when departament = 'technical' then 'TÉCNICO'
                 when departament = 'mecanic' then 'MECÂNICO'
                 else 'OUTRO'
-            end as department
+            end as departament
             , company_branches_id
             , upper(first_name) as first_name
             , upper(last_name) as last_name

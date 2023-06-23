@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: dim_employees
+    description: Dimension about employees data
+    tests:
+      - dbt_utils.equal_rowcount: 
+          compare_model: ref('stg_employees')
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - employee_id
+            - first_name
+            - last_name
+            - gender
+            - email
+    columns:
+      - name: employee_id
+        description: Primary key of the employees table
+        tests: 
+          - unique
+          - not_null
+      - name: first_name
+        description: Description about first name in employees
+        tests: 
+          - not_null
+      - name: last_name
+        description: Description about last name in employees
+        tests: 
+          - not_null              
+      - name: gender
+        description: Description about gender in employees
+        tests: 
+          - not_null              
+      - name: email
+        description: Description about email in employees
+        tests: 
+          - not_null

@@ -1,0 +1,19 @@
+models:
+  - name: dim_services
+    description: Dimension about order status data
+    tests:
+      - dbt_utils.fewer_rows_than: 
+          compare_model: ref('order_items') 
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - service
+    columns:
+      - name: sk_services
+        description: Primary key of the services table
+        tests: 
+          - unique
+          - not_null
+      - name: service
+        description: Description about service in services table
+        tests: 
+          - not_null

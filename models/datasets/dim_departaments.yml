@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: dim_departaments
+    description: Dimension about departaments data
+    tests:
+      - dbt_utils.fewer_rows_than: 
+          compare_model: ref('stg_employees') -- esse teste verifica se essa tabela possui menos registros que a tabela de origem uma vez que esta dimensão é gerada a partir de uma tabela maior
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - departament_id
+            - departament
+    columns:
+      - name: departament_id
+        description: Primary key of the departaments table
+        tests: 
+          - unique
+          - not_null
+      - name: departament
+        description: Description about departament in departaments
+        tests: 
+          - not_null
+      

@@ -12,9 +12,9 @@ with
         select  
                 id as order_item_id
                 , order_id
-                , order_type_id as id_type
+                , order_type_id as type_id
                 , item[OFFSET(0)] as model
-                , item[OFFSET(1)] as number_review
+                , item[OFFSET(1)] as status_id
                 , item[OFFSET(2)] as review
                 , item[OFFSET(3)] as price
         from source

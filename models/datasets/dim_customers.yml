@@ -1,0 +1,87 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: Dimension about customers data
+    tests:
+      - dbt_utils.equal_rowcount: 
+          compare_model: ref('stg_customers')
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - customer_id
+            - first_name
+            - last_name
+            - gender
+            - job_title
+            - phone 
+            - email
+            - country_code
+            - country
+            - city
+            - latitude
+            - longitude
+            - is_recurring
+            - level
+            - registration_date
+    columns:
+      - name: customer_id
+        description: Primary key of the customers table
+        tests: 
+          - unique
+          - not_null
+      - name: first_name
+        description: Description about first name in customers
+        tests: 
+          - not_null
+      - name: last_name
+        description: Description about last name in customers
+        tests: 
+          - not_null
+      - name: gender
+        description: Description about gender in customers
+        tests: 
+          - not_null              
+      - name: job_title
+        description: Description about job title in customers
+        tests: 
+          - not_null
+      - name: phone
+        description: Description about phone in customers
+        tests: 
+          - not_null              
+      - name: email
+        description: Description about email in customers
+        tests: 
+          - not_null              
+      - name: country_code
+        description: Description about country code in customers
+        tests: 
+          - not_null              
+      - name: country
+        description: Description about country in customers
+        tests: 
+          - not_null                    
+      - name: city
+        description: Description about city in customers
+        tests: 
+          - not_null      
+      - name: latitude
+        description: Description about latitude in customers
+        tests: 
+          - not_null     
+      - name: longitude
+        description: Description about longitude in customers
+        tests: 
+          - not_null   
+      - name: is_recurring
+        description: Description about customer recurrency in customers
+        tests: 
+          - not_null   
+      - name: level
+        description: Description about customer level in customers
+        tests: 
+          - not_null   
+      - name: registration_date
+        description: Description about date of registration in customers
+        tests: 
+          - not_null

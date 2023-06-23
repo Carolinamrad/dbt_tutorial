@@ -1,0 +1,20 @@
+models:
+  - name: dim_order_status
+    description: Dimension about order status data
+    tests:
+      - dbt_utils.equal_rowcount: 
+          compare_model: ref('order_status')    
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - name_status
+    columns:
+      - name: sk_order_status
+        description: Primary key of the order status table
+        tests: 
+          - unique
+          - not_null
+      - name: name_status
+        description: Description about status in order status table
+        tests: 
+          - not_null
+      
